@@ -6,7 +6,7 @@ Todo :
   - Handle push by open a new VC (see appplication.applicationState)
   - Local in app push
   - Set push sound, increment the badge
-  - Do everything related push notification
+  - Do everything related to push notification
 
   
   BY USING OBJECTIVE C 😨😳
