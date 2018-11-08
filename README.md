@@ -5,7 +5,7 @@ A push based app for practicing push notification & local notification with fire
 Todo : 
   - Handle push by open a new VC (see appplication.applicationState)
   - Local in app push
-  - Set push sound, increment the badge
+  - Set push sound,  badge increment
   - Do everything related to push notification
 
   
