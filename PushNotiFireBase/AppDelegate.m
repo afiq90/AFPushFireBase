@@ -90,9 +90,10 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"user info : %@", userInfo);
+    
+    // use NSNotificationCenter to post the userInfo alert value and use in viewcontroller notificationText variables
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"notiText" object:nil userInfo:userInfo];
 
-    // use nsnotification center to post the userInfo alert value and use in viewcontroller notificationText variables
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"notiText" object:nil userInfo:userInfo];
     [self showNotiPopup: userInfo];
 
 }
@@ -101,13 +102,9 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse*)response withCompletionHandler:(void(^)(void))completionHandler {
     NSDictionary *userInfo = response.notification.request.content.userInfo;
     
-   
-    
-    //save the aps alert to NSUserDefault
-//    NSUserDefaults *notiString = [NSUserDefaults standardUserDefaults];
-//    [notiString setObject:userInfo[@"aps"][@"alert"] forKey:@"notiString"];
-//    [notiString synchronize];
-    
+    // use NSNotificationCenter to post the userInfo alert value and use in viewcontroller notificationText variables
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"notiText" object:nil userInfo:userInfo];
+
     if (userInfo[@"gcm.message_id"]) {
         NSLog(@"Message ID: %@", userInfo[@"gcm.message_id"]);
     }
@@ -124,8 +121,7 @@
     NSLog(@"FCM registration token: %@", fcmToken);
     // Notify about received token.
     NSDictionary *dataDict = [NSDictionary dictionaryWithObject:fcmToken forKey:@"token"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:
-     @"FCMToken" object:nil userInfo:dataDict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FCMToken" object:nil userInfo:dataDict];
     // TODO: If necessary send token to application server.
     // Note: This callback is fired at each app startup and whenever a new token is generated.
 }
